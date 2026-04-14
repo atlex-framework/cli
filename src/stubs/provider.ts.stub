@@ -1,0 +1,8 @@
+export class {{ClassName}} {
+  /**
+   * Register bindings in the service container.
+   */
+  public register(): void {
+    // TODO: container.bind(...)
+  }
+}

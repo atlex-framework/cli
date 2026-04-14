@@ -1,0 +1,21 @@
+import { MailMessage, Notification } from "@atlex/notifications";
+
+/**
+ * {{ClassName}}
+ */
+export class {{ClassName}} extends Notification {
+  /** @inheritdoc */
+  public override via(_notifiable: unknown): string[] {
+    return ["mail", "database"];
+  }
+
+  /** @inheritdoc */
+  public override toMail(_notifiable: unknown): MailMessage {
+    return new MailMessage().subject("{{ClassName}}").line("Hello from Atlex.");
+  }
+
+  /** @inheritdoc */
+  public override toDatabase(_notifiable: unknown): Record<string, unknown> {
+    return { title: "{{ClassName}}" };
+  }
+}

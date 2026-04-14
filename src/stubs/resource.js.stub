@@ -1,0 +1,13 @@
+import { JsonResource } from "@atlex/core";
+
+export class {{ClassName}} extends JsonResource {
+  toArray(_req) {
+    const r = this.resource;
+    return {
+      // id: r.id,
+    };
+  }
+}
+
+export default {{ClassName}};
+

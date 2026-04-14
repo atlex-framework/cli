@@ -1,0 +1,15 @@
+import { Schema } from "@atlex/orm";
+import type { MigrationContext } from "@atlex/orm";
+
+// {{ClassName}} — {{FileName}}
+
+export async function up(ctx: MigrationContext): Promise<void> {
+  await Schema.create("{{TableName}}", (table) => {
+    table.id();
+    table.timestamps();
+  });
+}
+
+export async function down(ctx: MigrationContext): Promise<void> {
+  await Schema.dropIfExists("{{TableName}}");
+}

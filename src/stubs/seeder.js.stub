@@ -1,0 +1,15 @@
+import { Seeder } from "@atlex/orm";
+
+/**
+ * Database seeder — run via `atlex db:seed` (or `atlex db:seed --class={{ClassName}}`).
+ */
+export default class {{ClassName}} extends Seeder {
+  /**
+   * Run the database seeds.
+   *
+   * @returns {Promise<void>}
+   */
+  async run() {
+    //
+  }
+}

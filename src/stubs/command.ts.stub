@@ -1,0 +1,21 @@
+import { Command } from "@atlex/cli";
+
+export class {{ClassName}} extends Command {
+  /**
+   * The name and signature of the console command.
+   *
+   * @example "users:prune {--days=30}"
+   */
+  public static signature = "{{commandSignature}}";
+
+  /**
+   * The console command description.
+   */
+  public static description = "{{commandDescription}}";
+
+  public async handle(): Promise<number> {
+    this.info("Command executed.");
+    return 0;
+  }
+}
+

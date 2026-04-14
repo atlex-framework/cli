@@ -1,0 +1,6 @@
+# Welcome
+
+Hello, {{user.name|there}}!
+
+Welcome to our application.
+

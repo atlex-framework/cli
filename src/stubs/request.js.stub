@@ -1,0 +1,16 @@
+import { FormRequest } from "@atlex/core";
+
+export class {{ClassName}} extends FormRequest {
+  authorize() {
+    return true;
+  }
+
+  rules() {
+    return {
+      // name: "required|string|min:2|max:255",
+    };
+  }
+}
+
+export default {{ClassName}};
+

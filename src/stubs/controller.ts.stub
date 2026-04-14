@@ -1,0 +1,16 @@
+import { Injectable, response } from "@atlex/core";
+
+import { Controller } from "./Controller.js";
+
+@Injectable()
+export class {{ClassName}} extends Controller {
+  public constructor() {
+    super();
+  }
+
+  public async index(): Promise<void> {
+    response().status(200).json({ ok: true });
+  }
+}
+
+export default {{ClassName}};

@@ -1,0 +1,22 @@
+import { Channel, Event, PrivateChannel, type Broadcastable } from "@atlex/core";
+
+type Order = unknown;
+
+export class {{ClassName}} extends Event implements Broadcastable {
+  public constructor(public readonly order: Order) {
+    super();
+  }
+
+  public broadcastOn(): Channel[] {
+    return [new PrivateChannel("orders.1")];
+  }
+
+  public broadcastAs(): string {
+    return "event.name";
+  }
+
+  public broadcastWith(): Record<string, unknown> {
+    return {};
+  }
+}
+

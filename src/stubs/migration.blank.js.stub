@@ -1,0 +1,13 @@
+// {{ClassName}} — {{FileName}}
+
+/**
+ * @param {import("@atlex/orm").MigrationContext} _ctx
+ */
+export async function up(_ctx) {
+}
+
+/**
+ * @param {import("@atlex/orm").MigrationContext} _ctx
+ */
+export async function down(_ctx) {
+}

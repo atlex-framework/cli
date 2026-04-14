@@ -1,0 +1,6 @@
+/**
+ * Base HTTP controller. Subclass for each controller.
+ *
+ * Use `@Injectable()` on subclasses when resolving via `Route.get(path, [Controller, "method"])`.
+ */
+export class Controller {}

@@ -1,0 +1,21 @@
+import { MailMessage, Notification } from "@atlex/notifications";
+
+/**
+ * {{ClassName}}
+ */
+export class {{ClassName}} extends Notification {
+  /** @inheritdoc */
+  via(_notifiable) {
+    return ["mail", "database"];
+  }
+
+  /** @inheritdoc */
+  toMail(_notifiable) {
+    return new MailMessage().subject("{{ClassName}}").line("Hello from Atlex.");
+  }
+
+  /** @inheritdoc */
+  toDatabase(_notifiable) {
+    return { title: "{{ClassName}}" };
+  }
+}

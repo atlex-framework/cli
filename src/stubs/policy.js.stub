@@ -1,0 +1,50 @@
+import { Policy } from "@atlex/auth";
+
+/**
+ * Authorization policy for {{ClassName}} resources.
+ */
+export class {{ClassName}} extends Policy {
+  /**
+   * @param {import("@atlex/auth").Authenticatable} _user
+   * @param {string} _ability
+   * @returns {boolean | null}
+   */
+  before(_user, _ability) {
+    return null;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  viewAny(_user) {
+    return false;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  view(_user, _model) {
+    return false;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  create(_user) {
+    return false;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  update(_user, _model) {
+    return false;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  delete(_user, _model) {
+    return false;
+  }
+}

@@ -1,0 +1,13 @@
+import { Mailable } from "@atlex/mail";
+
+type User = unknown;
+
+export class {{ClassName}} extends Mailable {
+  public constructor(private readonly user: User) {
+    super();
+  }
+
+  public build(): this {
+    return this.subject("Welcome to Atlex!").view("emails.{{ViewName}}", { user: this.user });
+  }
+}

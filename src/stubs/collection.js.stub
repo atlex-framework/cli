@@ -1,0 +1,9 @@
+import { ResourceCollection } from "@atlex/core";
+
+export class {{ClassName}} extends ResourceCollection {
+  // Optionally pass an item resource class in your controller:
+  // `return new {{ClassName}}(users, UserResource)`
+}
+
+export default {{ClassName}};
+

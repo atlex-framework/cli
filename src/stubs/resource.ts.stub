@@ -1,0 +1,14 @@
+import type { Request } from "express";
+import { JsonResource } from "@atlex/core";
+
+export class {{ClassName}} extends JsonResource {
+  public override toArray(_req: Request): Record<string, unknown> {
+    const r = this.resource;
+    return {
+      // id: r.id,
+    };
+  }
+}
+
+export default {{ClassName}};
+

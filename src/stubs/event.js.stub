@@ -1,0 +1,8 @@
+import { Event } from "@atlex/core";
+
+export class {{ClassName}} extends Event {
+  constructor() {
+    super();
+  }
+}
+

@@ -1,0 +1,35 @@
+import { Injectable, request, response } from "@atlex/core";
+
+import { Controller } from "./Controller.js";
+
+/**
+ * API / REST-style resource controller (no `create` / `edit` HTML actions).
+ */
+@Injectable()
+export class {{ClassName}} extends Controller {
+  public constructor() {
+    super();
+  }
+
+  public async index(): Promise<void> {
+    response().status(200).json({ data: [] });
+  }
+
+  public async store(): Promise<void> {
+    response().status(201).json({ created: true });
+  }
+
+  public async show(): Promise<void> {
+    response().status(200).json({ id: request().params.id });
+  }
+
+  public async update(): Promise<void> {
+    response().status(200).json({ id: request().params.id, updated: true });
+  }
+
+  public async destroy(): Promise<void> {
+    response().status(204).send();
+  }
+}
+
+export default {{ClassName}};

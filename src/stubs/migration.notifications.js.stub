@@ -1,0 +1,20 @@
+import { Schema } from "@atlex/orm";
+
+// {{ClassName}} — {{FileName}}
+
+export async function up(_ctx) {
+  await Schema.create("notifications", (table) => {
+    table.string("id", 36).primary();
+    table.string("type", 255).notNullable();
+    table.string("notifiable_type", 255).notNullable();
+    table.string("notifiable_id", 255).notNullable();
+    table.text("data").notNullable();
+    table.timestamp("read_at").nullable();
+    table.timestamps();
+    table.index(["notifiable_type", "notifiable_id"]);
+  });
+}
+
+export async function down(_ctx) {
+  await Schema.dropIfExists("notifications");
+}

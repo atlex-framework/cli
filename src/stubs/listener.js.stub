@@ -1,0 +1,10 @@
+import { Listen } from "@atlex/core";
+import { {{EventClass}} } from "../Events/{{EventClass}}";
+
+@Listen({{EventClass}})
+export class {{ClassName}} {
+  async handle(_event) {
+    // Intentionally empty; implement in your app.
+  }
+}
+

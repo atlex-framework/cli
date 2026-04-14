@@ -1,0 +1,55 @@
+import type { Authenticatable, Guard } from "@atlex/auth";
+
+/**
+ * Custom guard scaffold — implement {@link Guard} and register via `AuthManager.extend`.
+ */
+export class {{ClassName}} implements Guard {
+  /**
+   * @inheritdoc
+   */
+  public async check(): Promise<boolean> {
+    return false;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public async guest(): Promise<boolean> {
+    return !(await this.check());
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public async user(): Promise<Authenticatable | null> {
+    return null;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public async id(): Promise<string | number | null> {
+    return null;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public async validate(_credentials: Record<string, unknown>): Promise<boolean> {
+    return false;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public hasUser(): boolean {
+    return false;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public setUser(_user: Authenticatable): void {
+    /* attach resolved user for the request */
+  }
+}

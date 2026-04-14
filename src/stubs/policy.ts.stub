@@ -1,0 +1,48 @@
+import { Policy } from "@atlex/auth";
+
+/**
+ * Authorization policy for {{ClassName}} resources.
+ */
+export class {{ClassName}} extends Policy {
+  /**
+   * Optional global gate — return `true` to allow everything, `false` to deny, `null` to continue.
+   */
+  public before(_user: import("@atlex/auth").Authenticatable, _ability: string): boolean | null {
+    return null;
+  }
+
+  /**
+   * @returns Whether listing is allowed.
+   */
+  public viewAny(_user: import("@atlex/auth").Authenticatable): boolean {
+    return false;
+  }
+
+  /**
+   * @returns Whether viewing a single record is allowed.
+   */
+  public view(_user: import("@atlex/auth").Authenticatable, _model: unknown): boolean {
+    return false;
+  }
+
+  /**
+   * @returns Whether create is allowed.
+   */
+  public create(_user: import("@atlex/auth").Authenticatable): boolean {
+    return false;
+  }
+
+  /**
+   * @returns Whether update is allowed.
+   */
+  public update(_user: import("@atlex/auth").Authenticatable, _model: unknown): boolean {
+    return false;
+  }
+
+  /**
+   * @returns Whether delete is allowed.
+   */
+  public delete(_user: import("@atlex/auth").Authenticatable, _model: unknown): boolean {
+    return false;
+  }
+}

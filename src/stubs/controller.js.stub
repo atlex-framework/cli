@@ -1,0 +1,15 @@
+import { response } from "@atlex/core";
+
+import { Controller } from "./Controller.js";
+
+export class {{ClassName}} extends Controller {
+  constructor() {
+    super();
+  }
+
+  async index() {
+    response().status(200).json({ ok: true });
+  }
+}
+
+export default {{ClassName}};

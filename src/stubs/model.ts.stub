@@ -1,0 +1,6 @@
+import { Model } from "@atlex/orm";
+
+export class {{ClassName}} extends Model {
+  static override table = "{{TableName}}";
+  static override fillable: string[] = [];
+}

@@ -1,0 +1,68 @@
+{
+  "name": "@atlex/cli",
+  "version": "0.1.0-beta",
+  "type": "module",
+  "description": "Atlex command-line interface (atlex new, atlex serve, generators, migrate, queue, …)",
+  "license": "MIT",
+  "author": {
+    "name": "Karen Hamazaspyan",
+    "url": "https://github.com/khamazaspyan"
+  },
+  "keywords": [
+    "atlex",
+    "cli",
+    "typescript",
+    "scaffold"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlex-framework/atlex-monorepo.git",
+    "directory": "cli"
+  },
+  "homepage": "https://atlex.dev",
+  "bugs": {
+    "url": "https://github.com/atlex-framework/atlex-monorepo/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "atlex": "./dist/bin/atlex.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run -c vitest.config.ts",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@atlex/config": "workspace:*",
+    "@atlex/encryption": "workspace:*",
+    "@atlex/core": "workspace:*",
+    "@atlex/orm": "workspace:*",
+    "@atlex/queue": "workspace:*",
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.1",
+    "execa": "^9.6.0",
+    "fs-extra": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.0"
+  }
+}

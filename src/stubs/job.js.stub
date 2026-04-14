@@ -1,0 +1,21 @@
+import { Job, RegisterJob } from "@atlex/queue";
+
+@RegisterJob()
+export class {{ClassName}} extends Job {
+  static queue = "default";
+  static tries = 3;
+  static backoff = [1000, 5000, 30000];
+  static timeout = 60;
+
+  constructor() {
+    super();
+  }
+
+  async handle() {
+    //
+  }
+
+  async failed(_error) {
+    //
+  }
+}

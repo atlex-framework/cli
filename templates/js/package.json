@@ -1,0 +1,23 @@
+{
+  "name": "my-atlex-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate": "atlex migrate",
+    "dev": "nodemon --watch . --ext js,json --exec node main.js",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "@atlex/config": "0.1.0-beta",
+    "@atlex/core": "0.1.0-beta",
+    "@atlex/log": "0.1.0-beta",
+    "@atlex/cli": "0.1.0-beta",
+    "@atlex/orm": "0.1.0-beta",
+    "@atlex/testing": "0.1.0-beta",
+    "@atlex/auth": "0.1.0-beta",
+    "@atlex/queue": "0.1.0-beta"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

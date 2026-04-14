@@ -1,0 +1,21 @@
+import { PrivateChannel, Event } from "@atlex/core";
+
+export class {{ClassName}} extends Event {
+  constructor(order) {
+    super();
+    this.order = order;
+  }
+
+  broadcastOn() {
+    return [new PrivateChannel("orders.1")];
+  }
+
+  broadcastAs() {
+    return "event.name";
+  }
+
+  broadcastWith() {
+    return {};
+  }
+}
+

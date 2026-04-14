@@ -1,0 +1,7 @@
+import { env } from "@atlex/config";
+
+export default {
+  driver: env("{{EnvPrefix}}_DRIVER", "default"),
+  host: env("{{EnvPrefix}}_HOST", "localhost"),
+  port: env("{{EnvPrefix}}_PORT", 6379),
+};

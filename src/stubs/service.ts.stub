@@ -1,0 +1,9 @@
+import { Injectable } from "@atlex/core";
+
+/**
+ * Application service (container-resolvable when used with `@Injectable()` controllers).
+ */
+@Injectable()
+export class {{ClassName}} {}
+
+export default {{ClassName}};

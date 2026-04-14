@@ -1,0 +1,6 @@
+/**
+ * Application service. Wire into controllers via constructor `deps` or `@Injectable()` (TypeScript + container).
+ */
+export class {{ClassName}} {}
+
+export default {{ClassName}};

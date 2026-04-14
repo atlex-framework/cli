@@ -1,0 +1,31 @@
+import { request, response } from "@atlex/core";
+
+import { Controller } from "./Controller.js";
+
+export class {{ClassName}} extends Controller {
+  constructor() {
+    super();
+  }
+
+  async index() {
+    response().status(200).json({ data: [] });
+  }
+
+  async store() {
+    response().status(201).json({ created: true });
+  }
+
+  async show() {
+    response().status(200).json({ id: request().params.id });
+  }
+
+  async update() {
+    response().status(200).json({ id: request().params.id, updated: true });
+  }
+
+  async destroy() {
+    response().status(204).send();
+  }
+}
+
+export default {{ClassName}};

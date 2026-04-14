@@ -1,0 +1,18 @@
+import { Listen, SHOULD_QUEUE_LISTENER } from "@atlex/core";
+import { {{EventClass}} } from "../Events/{{EventClass}}";
+
+@Listen({{EventClass}})
+export class {{ClassName}} {
+  static [SHOULD_QUEUE_LISTENER] = true;
+  static queue = "default";
+  static tries = 3;
+
+  async handle(_event) {
+    // Intentionally empty; implement in your app.
+  }
+
+  failed(_event, _error) {
+    // Intentionally empty; implement in your app.
+  }
+}
+

@@ -1,0 +1,10 @@
+export class {{ClassName}} {
+  /**
+   * @param {import("express").Request} _req
+   * @param {import("express").Response} _res
+   * @param {import("express").NextFunction} next
+   */
+  handle(_req, _res, next) {
+    next();
+  }
+}

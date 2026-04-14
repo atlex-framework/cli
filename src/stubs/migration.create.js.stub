@@ -1,0 +1,20 @@
+import { Schema } from "@atlex/orm";
+
+// {{ClassName}} — {{FileName}}
+
+/**
+ * @param {import("@atlex/orm").MigrationContext} ctx
+ */
+export async function up(ctx) {
+  await Schema.create("{{TableName}}", (table) => {
+    table.id();
+    table.timestamps();
+  });
+}
+
+/**
+ * @param {import("@atlex/orm").MigrationContext} ctx
+ */
+export async function down(ctx) {
+  await Schema.dropIfExists("{{TableName}}");
+}

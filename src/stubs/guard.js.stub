@@ -1,0 +1,53 @@
+/**
+ * Custom guard scaffold — implement Guard and register via AuthManager.extend.
+ */
+export class {{ClassName}} {
+  /**
+   * @returns {Promise<boolean>}
+   */
+  async check() {
+    return false;
+  }
+
+  /**
+   * @returns {Promise<boolean>}
+   */
+  async guest() {
+    return !(await this.check());
+  }
+
+  /**
+   * @returns {Promise<import("@atlex/auth").Authenticatable | null>}
+   */
+  async user() {
+    return null;
+  }
+
+  /**
+   * @returns {Promise<string | number | null>}
+   */
+  async id() {
+    return null;
+  }
+
+  /**
+   * @returns {Promise<boolean>}
+   */
+  async validate(_credentials) {
+    return false;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  hasUser() {
+    return false;
+  }
+
+  /**
+   * @param {import("@atlex/auth").Authenticatable} _user
+   */
+  setUser(_user) {
+    /* attach resolved user for the request */
+  }
+}

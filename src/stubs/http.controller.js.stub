@@ -1,0 +1,7 @@
+/**
+ * Base HTTP controller. Subclass for each controller.
+ *
+ * With `Route.get(path, [YourController, "method"])`, TypeScript apps can use `@Injectable()` for constructor injection.
+ * Plain JavaScript controllers use `new YourController()` when not injectable.
+ */
+export class Controller {}

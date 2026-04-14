@@ -1,0 +1,23 @@
+import { Factory } from "@atlex/testing";
+
+import { {{ModelName}} } from "../../app/Models/{{ModelName}}.js";
+
+/**
+ * Model factory — use `new {{ClassName}}().make()`, `create()`, or `createMany(count)`.
+ */
+export class {{ClassName}} extends Factory {
+  public static override model = {{ModelName}};
+
+  /**
+   * Default attributes for one record.
+   */
+  protected definition(): Record<string, unknown> {
+    const f = this.faker();
+    return {
+      name: f.name(),
+      email: f.unique().safeEmail(),
+    };
+  }
+}
+
+export default {{ClassName}};
