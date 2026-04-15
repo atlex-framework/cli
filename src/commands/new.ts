@@ -66,13 +66,30 @@ type AtlexPackageName =
   | '@atlex/log'
   | '@atlex/storage'
 
-const ASCII_ART = String.raw`
-     _   _   _           
-    /_\ | |_ | | _____  __
-   //_\\| __|| |/ _ \ \/ /
-  /  _  \ |_ | |  __/>  < 
-  \_/ \_/\__||_|\___/_/\_\
-`
+/**
+ * Builds the Atlex banner string for `atlex new`.
+ *
+ * Uses ANSI true-color escape codes when stdout is a TTY (brand violet #7c3aed).
+ * Falls back to plain text in non-interactive environments (CI, pipes).
+ *
+ * Layout mirrors the logo SVG: a triangle "A" made from ╱╲ diagonals with a
+ * bottom crossbar, next to the wordmark and tagline.
+ */
+function buildBanner(): string {
+  const tty = process.stdout.isTTY === true
+
+  // Brand palette (degrades to identity when not a TTY)
+  const violet = (s: string): string => (tty ? `\x1b[38;2;124;58;237m${s}\x1b[0m` : s) // #7c3aed — primary
+  const brand = (s: string): string => (tty ? `\x1b[1m\x1b[38;2;167;139;250m${s}\x1b[0m` : s) // bold #a78bfa — name
+  const muted = (s: string): string => (tty ? `\x1b[38;2;148;130;186m${s}\x1b[0m` : s) // muted purple-grey — tagline
+
+  // Triangle "A" icon — matches the ╱╲ shape in the brand logo SVG
+  const r1 = `    ${violet('╱╲')}`
+  const r2 = `   ${violet('╱  ╲')}   ${brand('atlex')}`
+  const r3 = `  ${violet('╱────╲')}  ${muted('TypeScript Framework for Node.js')}`
+
+  return ['', r1, r2, r3, ''].join('\n')
+}
 
 function ensureNotCancelled<T>(value: T | symbol): T {
   if (isCancel(value)) {
@@ -786,7 +803,7 @@ export function newCommand(): Command {
     .description('Create a new Atlex application')
     .argument('<name>', 'application name / directory')
     .action(async (name: string) => {
-      intro(ASCII_ART)
+      intro(buildBanner())
 
       const language = ensureNotCancelled(
         await select({

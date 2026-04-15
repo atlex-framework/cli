@@ -19,12 +19,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atlex-framework/atlex-monorepo.git",
-    "directory": "cli"
+    "url": "git+https://github.com/atlex-framework/cli.git"
   },
   "homepage": "https://atlex.dev",
   "bugs": {
-    "url": "https://github.com/atlex-framework/atlex-monorepo/issues"
+    "url": "https://github.com/atlex-framework/cli/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -49,6 +48,7 @@
   "files": [
     "dist",
     "templates",
+    "docs",
     "README.md"
   ],
   "dependencies": {
