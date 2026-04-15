@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.4
+
+### Patch Changes
+
+- 31fa47d: Update documentations and remove depricated packages
+- Updated dependencies [31fa47d]
+  - @atlex/encryption@0.1.4
+  - @atlex/config@0.1.4
+  - @atlex/queue@0.1.4
+  - @atlex/core@0.1.4
+  - @atlex/orm@0.1.4
+
 ## 0.1.3
 
 ### Patch Changes
