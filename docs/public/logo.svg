@@ -1,0 +1,26 @@
+<svg viewBox="0 164 256 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon used as "A" -->
+  <g transform="translate(20,147) scale(0.4)">
+    <path
+            d="M80 135L115 65Q128 40 141 65L176 135Q185 155 160 140L125 119"
+            fill="none"
+            stroke="#8743FF"
+            stroke-width="24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Remaining text -->
+  <text
+          x="95"
+          y="210"
+          font-family="system-ui,sans-serif"
+          font-weight="800"
+          font-size="56"
+          fill="#8743FF"
+          letter-spacing="-1"
+  >
+    tlex
+  </text>
+</svg>
