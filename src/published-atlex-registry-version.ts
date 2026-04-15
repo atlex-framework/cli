@@ -1,7 +1,10 @@
+import { readCliPackageVersion } from './cli-package-version.js'
+
 /**
- * Semver pinned into scaffolded apps when using **registry** dependencies
- * (`@atlex/create-atlex-app`, or `ATLEX_SCAFFOLD_REGISTRY=1`).
+ * Semver used for `@atlex/*` dependencies in scaffolded apps when using
+ * **registry** mode (`atlex new` from a global install, `@atlex/create-atlex-app`).
  *
- * Keep in sync with the `version` field in every workspace `package.json` and `@atlex/cli`.
+ * Derived from the installed CLI's own `package.json` so it stays in sync
+ * automatically — no manual update needed on each release.
  */
-export const PUBLISHED_ATLEX_PACKAGE_VERSION = '0.1.0-beta' as const
+export const PUBLISHED_ATLEX_PACKAGE_VERSION: string = readCliPackageVersion()

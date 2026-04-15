@@ -9,15 +9,15 @@
     "start": "node --enable-source-maps dist/main.js"
   },
   "dependencies": {
-    "@atlex/config": "0.1.0-beta",
-    "@atlex/core": "0.1.0-beta",
-    "@atlex/log": "0.1.0-beta",
-    "@atlex/cli": "0.1.0-beta",
-    "@atlex/orm": "0.1.0-beta",
-    "@atlex/testing": "0.1.0-beta",
-    "@atlex/auth": "0.1.0-beta",
-    "@atlex/queue": "0.1.0-beta",
-    "@atlex/storage": "0.1.0-beta"
+    "@atlex/config": "0.1.4",
+    "@atlex/core": "0.1.4",
+    "@atlex/log": "0.1.4",
+    "@atlex/cli": "0.1.4",
+    "@atlex/orm": "0.1.4",
+    "@atlex/testing": "0.1.4",
+    "@atlex/auth": "0.1.4",
+    "@atlex/queue": "0.1.4",
+    "@atlex/storage": "0.1.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

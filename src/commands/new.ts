@@ -65,6 +65,10 @@ type AtlexPackageName =
   | '@atlex/config'
   | '@atlex/log'
   | '@atlex/storage'
+  | '@atlex/cache'
+  | '@atlex/mail'
+  | '@atlex/notifications'
+  | '@atlex/encryption'
 
 function buildBanner(): string {
   const tty = process.stdout.isTTY === true
@@ -523,6 +527,10 @@ function atlexOverrides(
     '@atlex/config': atlexDep('@atlex/config', mode, targetDir, atlexRoot),
     '@atlex/log': atlexDep('@atlex/log', mode, targetDir, atlexRoot),
     '@atlex/storage': atlexDep('@atlex/storage', mode, targetDir, atlexRoot),
+    '@atlex/cache': atlexDep('@atlex/cache', mode, targetDir, atlexRoot),
+    '@atlex/mail': atlexDep('@atlex/mail', mode, targetDir, atlexRoot),
+    '@atlex/notifications': atlexDep('@atlex/notifications', mode, targetDir, atlexRoot),
+    '@atlex/encryption': atlexDep('@atlex/encryption', mode, targetDir, atlexRoot),
   }
 }
 

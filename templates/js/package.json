@@ -8,14 +8,14 @@
     "start": "node main.js"
   },
   "dependencies": {
-    "@atlex/config": "0.1.0-beta",
-    "@atlex/core": "0.1.0-beta",
-    "@atlex/log": "0.1.0-beta",
-    "@atlex/cli": "0.1.0-beta",
-    "@atlex/orm": "0.1.0-beta",
-    "@atlex/testing": "0.1.0-beta",
-    "@atlex/auth": "0.1.0-beta",
-    "@atlex/queue": "0.1.0-beta"
+    "@atlex/config": "0.1.4",
+    "@atlex/core": "0.1.4",
+    "@atlex/log": "0.1.4",
+    "@atlex/cli": "0.1.4",
+    "@atlex/orm": "0.1.4",
+    "@atlex/testing": "0.1.4",
+    "@atlex/auth": "0.1.4",
+    "@atlex/queue": "0.1.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
