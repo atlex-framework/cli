@@ -1,6 +1,6 @@
-# Atlex
+# ![Atlex](/docs/public/logo.svg)
 
-**A full-stack TypeScript framework for Node.js**
+**A modern framework for Node.js**
 
 [![npm version](https://img.shields.io/npm/v/@atlex/cli.svg?style=flat-square&color=7c3aed)](https://www.npmjs.com/package/@atlex/cli)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square)](https://www.typescriptlang.org/)
@@ -10,7 +10,7 @@
 
 Build elegant, production-ready applications with the developer experience you love.
 
-[Documentation](https://atlex.dev) · [Getting Started](#-quick-start) · [CLI Reference](#-cli-reference) · [Packages](#-packages)
+[Documentation](https://atlex.dev) · [Getting Started](#quick-start) · [CLI Reference](#cli-reference) · [Packages](#packages)
 
 ---
 
@@ -541,23 +541,10 @@ my-app/
 
 ---
 
-## Contributing
-
-```bash
-git clone https://github.com/atlex-framework/atlex-monorepo.git
-cd atlex-monorepo
-npm install
-npm test
-```
-
-See [CONTRIBUTING.md](https://github.com/atlex-framework/atlex-monorepo/blob/main/CONTRIBUTING.md) for details.
-
----
-
 ## License
 
 MIT © [Karen Hamazaspyan](https://github.com/khamazaspyan)
 
 ---
 
-Built with care by Karen Hamazaspyan
+Built with 💜 by Karen Hamazaspyan

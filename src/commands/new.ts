@@ -66,27 +66,16 @@ type AtlexPackageName =
   | '@atlex/log'
   | '@atlex/storage'
 
-/**
- * Builds the Atlex banner string for `atlex new`.
- *
- * Uses ANSI true-color escape codes when stdout is a TTY (brand violet #7c3aed).
- * Falls back to plain text in non-interactive environments (CI, pipes).
- *
- * Layout mirrors the logo SVG: a triangle "A" made from ╱╲ diagonals with a
- * bottom crossbar, next to the wordmark and tagline.
- */
 function buildBanner(): string {
   const tty = process.stdout.isTTY === true
 
-  // Brand palette (degrades to identity when not a TTY)
-  const violet = (s: string): string => (tty ? `\x1b[38;2;124;58;237m${s}\x1b[0m` : s) // #7c3aed — primary
-  const brand = (s: string): string => (tty ? `\x1b[1m\x1b[38;2;167;139;250m${s}\x1b[0m` : s) // bold #a78bfa — name
-  const muted = (s: string): string => (tty ? `\x1b[38;2;148;130;186m${s}\x1b[0m` : s) // muted purple-grey — tagline
+  const violet = (s: string): string => (tty ? `\x1b[38;2;124;58;237m${s}\x1b[0m` : s)
+  const brand = (s: string): string => (tty ? `\x1b[1m\x1b[38;2;167;139;250m${s}\x1b[0m` : s)
+  const muted = (s: string): string => (tty ? `\x1b[38;2;148;130;186m${s}\x1b[0m` : s)
 
-  // Triangle "A" icon — matches the ╱╲ shape in the brand logo SVG
   const r1 = `    ${violet('╱╲')}`
   const r2 = `   ${violet('╱  ╲')}   ${brand('atlex')}`
-  const r3 = `  ${violet('╱────╲')}  ${muted('TypeScript Framework for Node.js')}`
+  const r3 = `  ${violet('╱────╲')}  ${muted('A modern framework for Node.js')}`
 
   return ['', r1, r2, r3, ''].join('\n')
 }
@@ -488,6 +477,11 @@ function isInsideDir(childPath: string, parentPath: string): boolean {
 }
 
 function dependencyMode(targetDir: string, atlexRoot: string): DependencyMode {
+  // When the CLI is globally installed, atlexRoot points inside node_modules
+  // and the monorepo packages don't exist there — fall back to registry deps.
+  if (!fs.existsSync(path.join(atlexRoot, 'packages', 'core'))) {
+    return 'registry'
+  }
   // If the app is generated under the monorepo root, workspace:* works.
   return isInsideDir(targetDir, atlexRoot) ? 'workspace' : 'file'
 }

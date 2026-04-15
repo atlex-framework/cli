@@ -11,8 +11,26 @@
   "keywords": [
     "atlex",
     "cli",
-    "typescript",
-    "scaffold"
+    "scaffold",
+    "generator",
+    "code-generator",
+    "project-scaffold",
+    "create-app",
+    "boilerplate",
+    "make-controller",
+    "make-model",
+    "make-migration",
+    "artisan",
+    "artisan-alternative",
+    "laravel-artisan",
+    "migrations-cli",
+    "database-migrations",
+    "laravel-alternative",
+    "laravel-for-nodejs",
+    "laravel-nodejs",
+    "nodejs",
+    "javascript",
+    "typescript"
   ],
   "engines": {
     "node": ">=20"
