@@ -1,6 +1,6 @@
 {
   "name": "@atlex/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Atlex command-line interface (atlex new, atlex serve, generators, migrate, queue, …)",
   "license": "MIT",
