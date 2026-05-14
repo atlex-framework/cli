@@ -56,6 +56,11 @@ npm run dev
 
 Your app is running at `http://localhost:3000`.
 
+Generated apps include both `routes/web.{ts,js}` for web/root routes and
+`routes/api.{ts,js}` for API routes. `main.{ts,js}` loads both files
+automatically, so routes added to `routes/api.{ts,js}` are available without
+manual bootstrap edits.
+
 ### 2. Generate an application key
 
 ```bash
@@ -75,6 +80,18 @@ atlex new <app-name>
 # Example
 atlex new my-app
 ```
+
+The scaffold creates:
+
+```text
+routes/web.{ts,js}
+routes/api.{ts,js}
+```
+
+Use `routes/web.{ts,js}` for web/root routes such as `/`. Use
+`routes/api.{ts,js}` for API endpoints; the default file wraps routes in
+`Route.group('/api', ...)`, so a route declared there as `/users` registers as
+`GET /api/users`.
 
 ---
 
@@ -391,6 +408,10 @@ atlex migrate
 ```
 
 ### Fluent Routing
+
+Generated apps load `routes/web.{ts,js}` and `routes/api.{ts,js}` from
+`main.{ts,js}`. Put API endpoints in `routes/api.{ts,js}` so they live inside
+the default `/api` route group.
 
 ```typescript
 import { Route } from '@atlex/core'

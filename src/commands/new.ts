@@ -394,12 +394,35 @@ function routesWebSource(language: Language): string {
   return `import { Route } from \"@atlex/core\";\n\nRoute.get(\"/\", (_req, res) => {\n  res.json({ message: \"Welcome to Atlex\" });\n});\n`
 }
 
-function mainSource(language: Language): string {
+function routesApiSource(language: Language): string {
   if (language === 'ts') {
-    return `import \"./bootstrap/database.js\";\nimport { Application } from \"@atlex/core\";\nimport appConfig from \"./config/app.js\";\nimport \"./routes/web.js\";\n\nconst app = new Application();\n\napp.boot();\napp.listen(appConfig.port, () => {\n  // eslint-disable-next-line no-console\n  console.log(\"Atlex listening on port \" + appConfig.port);\n});\n`
+    return `import type { Request, Response } from 'express'
+import { Route } from '@atlex/core'
+
+Route.group('/api', () => {
+  Route.get('/health', (_req: Request, res: Response) => {
+    res.json({ ok: true })
+  })
+})
+`
   }
 
-  return `import \"./bootstrap/database.js\";\nimport { Application } from \"@atlex/core\";\nimport appConfig from \"./config/app.js\";\nimport \"./routes/web.js\";\n\nconst app = new Application();\n\napp.boot();\napp.listen(appConfig.port, () => {\n  // eslint-disable-next-line no-console\n  console.log(\`Atlex listening on port \${appConfig.port}\`);\n});\n`
+  return `import { Route } from '@atlex/core'
+
+Route.group('/api', () => {
+  Route.get('/health', (_req, res) => {
+    res.json({ ok: true })
+  })
+})
+`
+}
+
+function mainSource(language: Language): string {
+  if (language === 'ts') {
+    return `import \"./bootstrap/database.js\";\nimport { Application } from \"@atlex/core\";\nimport appConfig from \"./config/app.js\";\nimport \"./routes/web.js\";\nimport \"./routes/api.js\";\n\nconst app = new Application();\n\napp.boot();\napp.listen(appConfig.port, () => {\n  // eslint-disable-next-line no-console\n  console.log(\"Atlex listening on port \" + appConfig.port);\n});\n`
+  }
+
+  return `import \"./bootstrap/database.js\";\nimport { Application } from \"@atlex/core\";\nimport appConfig from \"./config/app.js\";\nimport \"./routes/web.js\";\nimport \"./routes/api.js\";\n\nconst app = new Application();\n\napp.boot();\napp.listen(appConfig.port, () => {\n  // eslint-disable-next-line no-console\n  console.log(\`Atlex listening on port \${appConfig.port}\`);\n});\n`
 }
 
 function envExampleSource(appKey: string): string {
@@ -706,6 +729,7 @@ async function generateProject(
   )
 
   await fs.outputFile(path.join(targetDir, 'routes', `web.${ext}`), routesWebSource(opts.language))
+  await fs.outputFile(path.join(targetDir, 'routes', `api.${ext}`), routesApiSource(opts.language))
 
   await fs.outputFile(path.join(targetDir, `main.${ext}`), mainSource(opts.language))
 

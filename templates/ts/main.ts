@@ -3,6 +3,7 @@ import { Application } from '@atlex/core'
 import { ConfigServiceProvider, config } from '@atlex/config'
 import { LogServiceProvider } from '@atlex/log'
 import './routes/web.js'
+import './routes/api.js'
 
 const app = new Application()
 app.register(new ConfigServiceProvider())
