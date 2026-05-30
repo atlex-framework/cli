@@ -1,4 +1,5 @@
-import { existsSync } from 'node:fs'
+import { execSync } from 'node:child_process'
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -6,35 +7,76 @@ import { intro, outro } from '@clack/prompts'
 import { Command } from 'commander'
 
 import { resolveProjectCwd } from '../projectCwd.js'
-import { resolveAppSourceExtension } from '../utils/projectLanguage.js'
 
 import { bootstrapDatabaseFromApp, loadAppOrm } from './migrate.js'
 
 type SeederModule = Record<string, unknown>
 
-function resolveSeederPath(cwd: string, ext: 'ts' | 'js', className: string): string {
-  const base = className.endsWith('Seeder') ? className : `${className}Seeder`
-  const file = `${base}.${ext}`
+function seederBaseName(className: string): string {
+  return className.endsWith('Seeder') ? className : `${className}Seeder`
+}
+
+/**
+ * TypeScript apps compile seeders to `dist/database/seeders/*.js`.
+ * Loading `database/seeders/*.ts` breaks ESM imports that use `.js` extensions.
+ */
+function resolveSeederPath(cwd: string, className: string): string {
+  const base = seederBaseName(className)
   const candidates = [
-    path.join(cwd, 'dist', 'database', 'seeders', file),
-    path.join(cwd, 'database', 'seeders', file),
+    path.join(cwd, 'dist', 'database', 'seeders', `${base}.js`),
+    path.join(cwd, 'database', 'seeders', `${base}.ts`),
+    path.join(cwd, 'database', 'seeders', `${base}.js`),
   ]
-  for (const p of candidates) {
-    if (existsSync(p)) {
-      return p
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) {
+      return candidate
     }
   }
   throw new Error(
     [
-      `Seeder not found: ${file}`,
+      `Seeder not found: ${base}`,
       'Searched:',
       ...candidates.map((c) => `  - ${c}`),
       '',
       'Create one with `atlex make:seeder ' +
         base.replace(/Seeder$/, '') +
-        '` or build TypeScript output to dist/.',
+        '` or run `pnpm exec tsc -p tsconfig.json` so dist/ seeders exist.',
     ].join('\n'),
   )
+}
+
+/** Compile seeders when the project uses TypeScript and dist output is missing. */
+function ensureSeedersCompiled(cwd: string, className: string): void {
+  const base = seederBaseName(className)
+  const distJs = path.join(cwd, 'dist', 'database', 'seeders', `${base}.js`)
+  if (existsSync(distJs)) {
+    return
+  }
+  if (!existsSync(path.join(cwd, 'tsconfig.json'))) {
+    return
+  }
+
+  execSync('npx tsc -p tsconfig.json', { cwd, stdio: 'inherit' })
+  copySeedDataAssets(cwd)
+}
+
+/** Copy JSON (and similar) seed assets from `database/data` into `dist/database/data`. */
+function copySeedDataAssets(cwd: string): void {
+  const srcDir = path.join(cwd, 'database', 'data')
+  const destDir = path.join(cwd, 'dist', 'database', 'data')
+  if (!existsSync(srcDir)) {
+    return
+  }
+
+  mkdirSync(destDir, { recursive: true })
+  for (const name of readdirSync(srcDir)) {
+    if (!name.endsWith('.json')) {
+      continue
+    }
+    const src = path.join(srcDir, name)
+    const dest = path.join(destDir, name)
+    copyFileSync(src, dest)
+  }
 }
 
 function isConstructor(value: unknown): value is new () => { run(): void | Promise<void> } {
@@ -76,12 +118,14 @@ export function dbSeedCommand(): Command {
   cmd.action(async (options: { class: string }) => {
     const cwd = resolveProjectCwd()
     intro('db:seed')
-    const ext = resolveAppSourceExtension(cwd)
+    ensureSeedersCompiled(cwd, options.class)
+    copySeedDataAssets(cwd)
+
     const orm = await loadAppOrm(cwd)
     await bootstrapDatabaseFromApp(cwd)
     orm.ConnectionRegistry.instance().default()
 
-    const seederPath = resolveSeederPath(cwd, ext, options.class)
+    const seederPath = resolveSeederPath(cwd, options.class)
     const mod = (await import(pathToFileURL(seederPath).href)) as SeederModule
     await invokeSeederModule(seederPath, mod)
     try {
