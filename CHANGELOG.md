@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.11
+
+### Patch Changes
+
+- de7b9ba: Fix cli
+- Updated dependencies [de7b9ba]
+  - @atlex/config@0.1.11
+  - @atlex/core@0.1.11
+  - @atlex/encryption@0.1.11
+  - @atlex/orm@0.1.11
+  - @atlex/queue@0.1.11
+
 ## 0.1.10
 
 ### Patch Changes
